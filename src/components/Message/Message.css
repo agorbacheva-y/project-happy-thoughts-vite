@@ -10,6 +10,7 @@
   width: 80vw;
   min-width: 200px;
   padding: 1rem;
+  box-shadow: 5px 5px black;
 }
 
 .messageBody {
