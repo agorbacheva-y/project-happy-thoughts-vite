@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Message from "./Message/Message";
+import "./Message/Message.css";
 
 const MessageList = ({ thoughts }) => {
   /*
@@ -13,7 +14,7 @@ const MessageList = ({ thoughts }) => {
   }
 
   return (
-    <div>
+    <div className="messageBoxContainer">
       {thoughts.map((item) => (
         <Message key={item._id}>
           {item.message}
