@@ -8,10 +8,10 @@ const MessageForm = () => {
   
   */
   return (
-    <div class="inputBox">
+    <div className="inputBox">
       <h2>What is making you happy right now?</h2>
       <textarea 
-        class="messageInput" 
+        className="messageInput" 
         type="text" 
         placeholder="'If music be the food of love, play on.' - William Shakespeare"
       >
