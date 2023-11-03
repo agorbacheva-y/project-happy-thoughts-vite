@@ -69,8 +69,12 @@ const MessageForm = ({addNewThought}) => {
           onChange={saveMessage}
         >
         </textarea>
-        <CharacterCount letterCount={letterCount} errorMessage={errorMessage} />
-        <button onClick={handleSubmit}>❤️ Send Happy Thought ❤️</button>
+        <CharacterCount letterCount={newThought.message.length} />
+        <button onClick={handleSubmit}>
+          <span>❤️</span>
+          <span>Send Happy Thought</span>
+          <span>❤️</span>
+        </button>
 
       </div>
     </div>
