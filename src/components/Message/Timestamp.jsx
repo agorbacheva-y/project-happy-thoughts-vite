@@ -1,13 +1,30 @@
-import React from 'react'
+import React from "react";
 
-const Timestamp = () => {
-  /*
-  Function to convert compar created time to current time and return a string rounding it.
-  */
+const Timestamp = ({ thought }) => {
+  const sinceTimeString = () => {
+    const currentTime = Date.parse(new Date());
+    const timestamp = Date.parse(thought.createdAt);
+    let timeDifference = (currentTime - timestamp) / 1000 / 60;
+
+    if (timeDifference < 1) {
+      return "less than a minute ago";
+    } else if (timeDifference < 60) {
+      return `${Math.round(timeDifference)} minutes ago`;
+    } else if (timeDifference < 1440) {
+      timeDifference = timeDifference / 60;
+      return `${Math.round(timeDifference)} hours ago`;
+    } else if (timeDifference >= 1440) {
+      timeDifference = timeDifference / 1440;
+      return `${Math.round(timeDifference)} days ago`;
+    } else {
+      return "No timestamp";
+    }
+  };
+
   return (
-    <div>
-      
-    </div>
+    <>
+      <p className="timestamp">{sinceTimeString()}</p>
+    </>
   );
 };
 
