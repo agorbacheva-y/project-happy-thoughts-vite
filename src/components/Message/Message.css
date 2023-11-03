@@ -31,3 +31,35 @@
 .timestamp {
   color: rgb(120, 120, 120);
 }
+
+.heartBtn {
+	display: flex;
+	justify-content: space-between;
+  align-items: center;
+}
+
+.heartBtn > div {
+	width: 55px;
+  height: 55px;
+}
+
+.heartBtn > div > button {
+	border: none;
+	border-radius: 50%;
+	background-color: #ccc;
+	transition: 1s ease;
+}
+
+.heartBtn > div > button {
+  animation: grow 1s infinite;
+	animation-direction: alternate;
+}
+
+@keyframes grow {
+  from {width: 48px;height: 48px;font-size: 24px;}
+  to {width: 52px;height: 52px;font-size: 27px;}
+}
+
+.heartBtn > div > button:hover {
+	background-color: #ffccff;
+}
