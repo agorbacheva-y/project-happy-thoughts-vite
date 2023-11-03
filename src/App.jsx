@@ -1,3 +1,10 @@
-export const App = () => {
-  return <div>Find me in src/app.jsx!</div>;
+import Home from "./components/Home";
+import "./App.css";
+
+const App = () => {
+  return (
+    <Home />
+  );
 };
+
+export default App;
