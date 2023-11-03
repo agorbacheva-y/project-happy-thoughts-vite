@@ -21,11 +21,12 @@ const Home = () => {
       const data = await response.json();
       //console.log(data);
 
-      setThoughts(data.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      ));
-
+      setThoughts(
+        data.sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        )
+      );
     } catch (error) {
       console.log(error.response.status);
     }

@@ -57,7 +57,7 @@ const MessageForm = ({ addNewThought }) => {
 
   useEffect(() => {
     errorHandling();
-  },[letterCount]);
+  }, [letterCount]);
 
   return (
     <div className="formContainer">
@@ -71,7 +71,7 @@ const MessageForm = ({ addNewThought }) => {
           onChange={saveMessage}
         ></textarea>
         <CharacterCount letterCount={letterCount} errorMessage={errorMessage} />
-        <button onClick={handleSubmit} disabled={disabled} >
+        <button onClick={handleSubmit} disabled={disabled}>
           <span>❤️</span>
           <span>Send Happy Thought</span>
           <span>❤️</span>

@@ -21,7 +21,7 @@ const HeartButton = ({ thought, index, setThoughts }) => {
         <div>
           <button onClick={handleHeart}>❤️</button>
         </div>
-        <p>x{thought.hearts}</p>
+        <p>x {thought.hearts}</p>
       </div>
     </>
   );
