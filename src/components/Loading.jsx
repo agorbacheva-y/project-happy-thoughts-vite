@@ -1,6 +1,8 @@
+import "./MessageForm/MessageForm.css";
+
 const Loading = () => {
   return (
-    <div>
+    <div className="formContainer">
       <p>loading...</p>
     </div>
   );
