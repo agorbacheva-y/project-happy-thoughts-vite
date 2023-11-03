@@ -8,6 +8,7 @@ const MessageList = ({ thoughts, setThoughts }) => {
   Use the length of that array to display how many.
   Store it in local storage.
   */
+ console.log(thoughts);
 
   return (
     <div className="messageBoxContainer">
@@ -18,7 +19,7 @@ const MessageList = ({ thoughts, setThoughts }) => {
           index={index}
           setThoughts={setThoughts}
         >
-          {item.message}
+          {item.message}{item._id}
         </Message>
       ))}
     </div>

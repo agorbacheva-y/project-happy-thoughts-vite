@@ -1,7 +1,6 @@
 import React from 'react'
 import './CharacterCount.css'
 
-
 const CharacterCount = ({letterCount, errorMessage}) => {
    /*
   Count characters.
