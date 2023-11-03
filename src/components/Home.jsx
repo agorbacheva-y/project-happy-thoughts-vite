@@ -29,7 +29,7 @@ const Home = () => {
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
-    console.log("ordered:", thoughts);
+    //console.log("ordered:", thoughts);
   }, [thoughts]);
 
   // function to fetch thoughts from api
