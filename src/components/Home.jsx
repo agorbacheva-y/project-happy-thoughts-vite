@@ -2,48 +2,40 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import MessageForm from "./MessageForm/MessageForm";
 import MessageList from "./MessageList";
-
-/*
-  state: thoughts
-  Fetching data.
-  Post data.
-  */
+import Loading from "./Loading";
 
 const Home = () => {
   // state to save thoughts fetched from api
   const [thoughts, setThoughts] = useState([]);
 
-  // state to save thoughts sorted from newest to oldest
-  const [orderedThoughts, setOrderedThoughts] = useState([]);
+  // state for loading
+  const [loading, setLoading] = useState(true);
 
+  // API url for GET
   const fetchUrl = "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts";
+
+  // function to fetch thoughts from api
+  const fetchThoughts = async () => {
+    try {
+      const response = await fetch(fetchUrl);
+      const data = await response.json();
+      //console.log(data);
+
+      setThoughts(data.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      ));
+
+    } catch (error) {
+      console.log(error.response.status);
+    }
+    setLoading(false);
+  };
 
   // fetch thoughts on mount
   useEffect(() => {
     fetchThoughts();
   }, []);
-
-  // sort thoughts from most recent to oldest
-  useEffect(() => {
-    thoughts?.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-    //console.log("ordered:", thoughts);
-  }, [thoughts]);
-
-  // function to fetch thoughts from api
-  const fetchThoughts = async () => {
-    await fetch(fetchUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        //console.log(data);
-        setThoughts(data);
-      })
-      .catch((err) => {
-        console.log(err.response.status);
-      });
-  };
 
   // function to allow MessageForm to push new thoughts on successful send
   const addNewThought = (newThought) => {
@@ -53,8 +45,14 @@ const Home = () => {
   return (
     <>
       <Header />
-      <MessageForm addNewThought={addNewThought} />
-      <MessageList thoughts={thoughts} setThoughts={setThoughts} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <MessageForm addNewThought={addNewThought} />
+          <MessageList thoughts={thoughts} setThoughts={setThoughts} />
+        </>
+      )}
     </>
   );
 };

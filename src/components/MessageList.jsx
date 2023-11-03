@@ -8,9 +8,6 @@ const MessageList = ({ thoughts, setThoughts }) => {
   Use the length of that array to display how many.
   Store it in local storage.
   */
-  if (!thoughts || thoughts.length === 0) {
-    return <p>no thoughts</p>;
-  }
 
   return (
     <div className="messageBoxContainer">
