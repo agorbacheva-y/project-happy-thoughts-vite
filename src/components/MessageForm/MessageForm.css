@@ -40,3 +40,11 @@
 .buttonText {
   font-size: 1.2rem;
 }
+
+/* Tablet */
+@media screen and (min-width: 500px) and (max-width: 1440px) {
+  .inputBox {
+    max-width: 450px;
+    min-height: 200px;
+  }
+}

@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
 .header {
-  width: 80vw;
   margin: auto;
-  text-align: left;
+  text-align: center;
   margin: 2rem 3rem;
+  font-family: 'Abril Fatface', serif;
+  font-size: 1rem;
+}
+
+.header > h1 {
+  background: linear-gradient(45deg, rgb(246, 5, 210), rgb(46, 247, 46));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

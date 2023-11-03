@@ -63,3 +63,11 @@
 .heartBtn > div > button:hover {
 	background-color: #ffccff;
 }
+
+
+@media screen and (min-width: 500px) and (max-width: 1440px) {
+  .messageBox {
+    max-width: 400px;
+    min-height: 200px;
+  }
+}
