@@ -44,10 +44,15 @@ const Home = () => {
       })
   };
 
+  // function to allow MessageForm to push new thoughts on successful send
+  const addNewThought = (newThought) => {
+    setThoughts(previousThoughts => [newThought, ...previousThoughts]);
+  };
+
   return (
     <>
       <Header />
-      <MessageForm />
+      <MessageForm addNewThought={addNewThought} />
       <MessageList thoughts={thoughts} />
     </>
   );

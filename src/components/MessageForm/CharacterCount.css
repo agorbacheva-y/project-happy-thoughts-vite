@@ -1,0 +1,16 @@
+.characterCountContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.letterCountText {
+  text-align: left;
+}
+
+.letterCount {
+  text-align: right;
+}
+
+.letterCount.warning {
+  color: red;
+}
