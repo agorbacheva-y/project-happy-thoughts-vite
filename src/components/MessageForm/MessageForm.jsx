@@ -25,7 +25,7 @@ const MessageForm = ({ addNewThought }) => {
       })
       .catch((error) => {
         setError(true);
-        console.log(error);
+        console.log("error:", error);
       });
   };
 
@@ -71,7 +71,7 @@ const MessageForm = ({ addNewThought }) => {
           onChange={saveMessage}
         ></textarea>
         <CharacterCount letterCount={letterCount} errorMessage={errorMessage} />
-        <button onClick={handleSubmit} disabled={disabled}>
+        <button onClick={handleSubmit}>
           <span>❤️</span>
           <span>Send Happy Thought</span>
           <span>❤️</span>

@@ -12,7 +12,6 @@ const MessageList = ({ thoughts, setThoughts }) => {
           setThoughts={setThoughts}
         >
           {item.message}
-          {item._id}
         </Message>
       ))}
     </div>
