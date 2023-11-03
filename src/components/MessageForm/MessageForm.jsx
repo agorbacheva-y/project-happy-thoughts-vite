@@ -6,7 +6,7 @@ import CharacterCount from "./CharacterCount";
 const MessageForm = ({addNewThought}) => {
   /* 
   form to add thought
-  input validation
+  input validation?
   state: newThought, characterCount?  
   */
 
@@ -48,6 +48,7 @@ const MessageForm = ({addNewThought}) => {
         </textarea>
         <CharacterCount letterCount={newThought.message.length} />
         <button onClick={handleSubmit}>❤️ Send Happy Thought ❤️</button>
+
       </div>
     </div>
   );
