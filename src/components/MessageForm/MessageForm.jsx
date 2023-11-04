@@ -23,6 +23,7 @@ const MessageForm = ({ addNewThought }) => {
         addNewThought(newThought);
         setNewThought(emptyThought);
       })
+      // !! not changing error state to true or logging error to console...
       .catch((error) => {
         setError(true);
         console.log("error:", error);
@@ -71,7 +72,7 @@ const MessageForm = ({ addNewThought }) => {
           onChange={saveMessage}
         ></textarea>
         <CharacterCount letterCount={letterCount} errorMessage={errorMessage} />
-        <button onClick={handleSubmit}>
+        <button onClick={handleSubmit} disabled={disabled} >
           <span>❤️</span>
           <span>Send Happy Thought</span>
           <span>❤️</span>
