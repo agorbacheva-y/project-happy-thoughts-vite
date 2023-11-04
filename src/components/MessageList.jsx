@@ -1,7 +1,7 @@
 import Message from "./Message/Message";
 import "./Message/Message.css";
 
-const MessageList = ({ thoughts, setThoughts }) => {
+const MessageList = ({ thoughts, setThoughts, likedThoughts, setLikedThoughts }) => {
   /*
   map thoughts
   State to track which posts are liked (array of the ids).
@@ -12,9 +12,6 @@ const MessageList = ({ thoughts, setThoughts }) => {
     return <p>no thoughts</p>;
   }
 
-  const savedLikedThoughts = localStorage.getItem('likedThoughts')
-  const likedThoughts = savedLikedThoughts ? JSON.parse(savedLikedThoughts) : []
-  console.log("messagelikedThoughts", likedThoughts)
   return (
     <div className="messageBoxContainer">
       {thoughts.map((item, index) => (
@@ -24,6 +21,7 @@ const MessageList = ({ thoughts, setThoughts }) => {
           index={index}
           setThoughts={setThoughts}
           liked={likedThoughts.includes(item._id)}
+          setLikedThoughts={setLikedThoughts}
         >
           {item.message}
         </Message>

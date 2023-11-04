@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-const HeartButton = ({ thought, index, setThoughts, liked }) => {
-  // We create a state for if thought has been liked
+const HeartButton = ({ thought, index, setThoughts, liked, setLikedThoughts }) => {
+  // We create a state for if heart has been clicked to prevent multiple likes being sent in a row
   const [heartClicked, setHeartClicked] = useState(false);
 
   // post like https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts/THOUGHT_ID/like
   const handleHeart = () => {
+    // as soon as the heart has been clicked we set state to true which instantly renders the 
     setHeartClicked(true);
     fetch(
       `https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts/${thought._id}/like`,
@@ -26,10 +27,7 @@ const HeartButton = ({ thought, index, setThoughts, liked }) => {
           )
         })
         // We save the _id into our localStorage
-        const savedLikedThoughts = localStorage.getItem('likedThoughts')
-        const likedThoughts = savedLikedThoughts ? JSON.parse(savedLikedThoughts) : [];
-        console.log("likedThoughts", likedThoughts)
-        localStorage.setItem('likedThoughts', JSON.stringify(likedThoughts.includes(thought._id) ? likedThoughts : [...likedThoughts, thought._id]))
+        setLikedThoughts((values) => values.includes(thought._id) ? values : [...values, thought._id])
       });
   };
 
