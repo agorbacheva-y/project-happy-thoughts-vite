@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./MessageForm.css";
 import CharacterCount from "./CharacterCount";
 
@@ -9,6 +9,7 @@ const MessageForm = ({ addNewThought }) => {
   const [newThought, setNewThought] = useState(emptyThought);
   const [letterCount, setLetterCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [errorType, setErrorType] = useState("");
 
   const postThought = async () => {
     try {
@@ -19,11 +20,12 @@ const MessageForm = ({ addNewThought }) => {
       })
       const data = await res.json();
       if (!res.ok) {
-        console.log("message:", data.message);
-        console.log("type:", data.errors.message.kind)
+        setErrorType(data.errors.message.kind)
+        console.log(data.message);
+      } else if (res.ok) {
+        addNewThought(newThought);
+        setNewThought(emptyThought);
       }
-      addNewThought(newThought);
-      setNewThought(emptyThought);
       setLetterCount(0);
     } catch(error) {
         console.log(error.message);
@@ -33,7 +35,7 @@ const MessageForm = ({ addNewThought }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     postThought();
-    errorHandling();
+    setNewThought(emptyThought);
   };
 
   const saveMessage = (e) => {
@@ -43,18 +45,37 @@ const MessageForm = ({ addNewThought }) => {
   };
 
   // function to show error message depending on character count
-  const errorHandling = () => {
-    if (letterCount === 0) {
-      setErrorMessage("Please enter your happy thought!");
-    } else if (letterCount < 5) {
-      setErrorMessage("You need at least 5 characters");
-    } else if (letterCount > 140) {
-      setErrorMessage("Message is too long");
-    } else {
-      setErrorMessage("");
+  // const errorHandling = () => {
+  //   if (letterCount === 0) {
+  //     setErrorMessage("Please enter your happy thought!");
+  //   } else if (letterCount < 5) {
+  //     setErrorMessage("You need at least 5 characters");
+  //   } else if (letterCount > 140) {
+  //     setErrorMessage("Message is too long");
+  //   } else {
+  //     setErrorMessage("");
+  //   }
+  //   return errorMessage;
+  // };
+    const errorHandling = () => {
+      switch (errorType) {
+        case "minlength":
+          setErrorMessage("You need at least 5 characters");
+          break;
+        case "maxlength":
+          setErrorMessage("Message is too long");
+          break;
+        case "required":
+          setErrorMessage("Please enter your happy thought!");
+          break;
+        default:
+          return;
+      }
     }
-    return errorMessage;
-  };
+
+    useEffect(() => {
+      errorHandling();
+    },[errorType]);
 
   return (
     <div className="formContainer">
