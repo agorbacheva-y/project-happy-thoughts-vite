@@ -9,7 +9,6 @@ const MessageForm = ({ addNewThought }) => {
   const [newThought, setNewThought] = useState(emptyThought);
   const [letterCount, setLetterCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
-  const [hasError, setHasError] = useState(false);
 
   const postThought = () => {
     fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
@@ -19,8 +18,7 @@ const MessageForm = ({ addNewThought }) => {
     })
       .then((res) => {
         const data = res.json();
-        if (res.status === 400) {
-          setHasError(true); // not changing state???
+        if (!res.ok) {
           console.log(data.message); // returning undefined??
         }
         return data;
@@ -30,7 +28,7 @@ const MessageForm = ({ addNewThought }) => {
         setNewThought(emptyThought);
       })
       .catch((error) => {
-        setHasError(true);
+        console.log(error.toString());
       });
   };
 
