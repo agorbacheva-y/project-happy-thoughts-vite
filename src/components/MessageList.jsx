@@ -12,6 +12,9 @@ const MessageList = ({ thoughts, setThoughts }) => {
     return <p>no thoughts</p>;
   }
 
+  const savedLikedThoughts = localStorage.getItem('likedThoughts')
+  const likedThoughts = savedLikedThoughts ? JSON.parse(savedLikedThoughts) : []
+  console.log("messagelikedThoughts", likedThoughts)
   return (
     <div className="messageBoxContainer">
       {thoughts.map((item, index) => (
@@ -20,6 +23,7 @@ const MessageList = ({ thoughts, setThoughts }) => {
           thought={item}
           index={index}
           setThoughts={setThoughts}
+          liked={likedThoughts.includes(item._id)}
         >
           {item.message}
         </Message>
