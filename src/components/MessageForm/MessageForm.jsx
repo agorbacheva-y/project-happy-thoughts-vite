@@ -42,6 +42,8 @@ const MessageForm = ({ addNewThought }) => {
     const message = e.target.value;
     setNewThought((values) => ({ ...values, message }));
     setLetterCount(message.length);
+    setErrorMessage("");
+    setErrorType("");
   };
 
   // function to show error message depending on character count
