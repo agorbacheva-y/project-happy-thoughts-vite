@@ -10,26 +10,24 @@ const MessageForm = ({ addNewThought }) => {
   const [letterCount, setLetterCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const postThought = () => {
-    fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: newThought.message }),
-    })
-      .then((res) => {
-        const data = res.json();
-        if (!res.ok) {
-          console.log(data.message); // returning undefined??
-        }
-        return data;
+  const postThought = async () => {
+    try {
+      const res = await fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: newThought.message }),
       })
-      .then((newThought) => {
-        addNewThought(newThought);
-        setNewThought(emptyThought);
-      })
-      .catch((error) => {
+      const data = await res.json();
+      if (!res.ok) {
+        console.log("message:", data.message);
+        console.log("type:", data.errors.message.kind)
+      }
+      addNewThought(newThought);
+      setNewThought(emptyThought);
+      setLetterCount(0);
+    } catch(error) {
         console.log(error.message);
-      });
+    };
   };
 
   const handleSubmit = (e) => {
