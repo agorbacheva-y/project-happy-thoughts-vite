@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./MessageForm.css";
 import CharacterCount from "./CharacterCount";
 
@@ -9,8 +9,7 @@ const MessageForm = ({ addNewThought }) => {
   const [newThought, setNewThought] = useState(emptyThought);
   const [letterCount, setLetterCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
-  const [disabled, setDisabled] = useState(true);
-  const [error, setError] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const postThought = () => {
     fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
@@ -18,21 +17,27 @@ const MessageForm = ({ addNewThought }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: newThought.message }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        const data = res.json();
+        if (res.status === 400) {
+          setHasError(true); // not changing state???
+          console.log(data.message); // returning undefined??
+        }
+        return data;
+      })
       .then((newThought) => {
         addNewThought(newThought);
         setNewThought(emptyThought);
       })
-      // !! not changing error state to true or logging error to console...
       .catch((error) => {
-        setError(true);
-        console.log("error:", error);
+        setHasError(true);
       });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     postThought();
+    errorHandling();
   };
 
   const saveMessage = (e) => {
@@ -46,19 +51,14 @@ const MessageForm = ({ addNewThought }) => {
     if (letterCount === 0) {
       setErrorMessage("Please enter your happy thought!");
     } else if (letterCount < 5) {
-      setErrorMessage("Message needs to be at least 5 characters");
+      setErrorMessage("You need at least 5 characters");
     } else if (letterCount > 140) {
       setErrorMessage("Message is too long");
     } else {
       setErrorMessage("");
-      setDisabled(false);
     }
     return errorMessage;
   };
-
-  useEffect(() => {
-    errorHandling();
-  }, [letterCount]);
 
   return (
     <div className="formContainer">
@@ -72,7 +72,7 @@ const MessageForm = ({ addNewThought }) => {
           onChange={saveMessage}
         ></textarea>
         <CharacterCount letterCount={letterCount} errorMessage={errorMessage} />
-        <button onClick={handleSubmit} disabled={disabled} >
+        <button onClick={handleSubmit} >
           <span>❤️</span>
           <span>Send Happy Thought</span>
           <span>❤️</span>
