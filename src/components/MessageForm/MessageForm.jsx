@@ -28,7 +28,7 @@ const MessageForm = ({ addNewThought }) => {
         setNewThought(emptyThought);
       })
       .catch((error) => {
-        console.log(error.toString());
+        console.log(error.message);
       });
   };
 
