@@ -3,14 +3,26 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  overflow: hidden;
 }
 
 .messageBox {
   border: 1px solid black;
-  width: 90vw;
+  width: 38vw;
   min-width: 200px;
   padding: 1.5rem 1rem;
   box-shadow: 7px 7px black;
+  margin-bottom: 10px;
+	animation: 1.5s ease-out 0s 1 slideDown;
+}
+
+@keyframes slideDown {
+	0% {
+			transform: translateY(-100%);
+	}
+	100% {
+			transform: translateY(0);
+	}
 }
 
 .messageBody {
@@ -48,6 +60,7 @@
 	border-radius: 50%;
 	background-color: #ccc;
 	transition: 1s ease;
+  cursor: pointer;
 }
 
 .heartBtn > div > button {
