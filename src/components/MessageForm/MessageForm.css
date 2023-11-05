@@ -34,6 +34,11 @@
   cursor: pointer;
   font-size: 18px;
   max-width: 250px;
+  transition: 1s ease;
+}
+
+.inputBox >button:hover {
+  background-color: #ffccff;
 }
 
 .buttonHeart {
