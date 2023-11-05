@@ -4,9 +4,12 @@
   </a>
 </h1>
 
-# Unhappy thoughts Project
+# Happy thoughts Project
 
-In this week's project, you'll be able to practice your React state skills by fetching and posting data to an API.
+Technigo Week 6 Group Project
+Daniel Read, Michael Holm, and Ayumi Gorbacheva-Yamamoto
+
+The assignment was to create an X (formerly Twitter)-like app to fetch and post happy thoughts.
 
 ## Getting Started with the Project
 
@@ -22,14 +25,18 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+We started by each taking an initial task: listing the fetched thoughts, creating a form to post new thoughts, and implementing the like button on existing thoughts. Other tasks and stretch goals were then worked on in individual branches.
+
+This project was good for practice using the useEffect hook and further practice on using state.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+<a href="https://technigo-wk6-happy-thoughts.netlify.app/">
+  Deployed site
+</a>
 
 ## Instructions
 
 <a href="instructions.md">
    See instructions of this project
-  </a>
+</a>
