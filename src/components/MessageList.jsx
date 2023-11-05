@@ -1,7 +1,7 @@
 import Message from "./Message/Message";
 import "./Message/Message.css";
 
-const MessageList = ({ thoughts, setThoughts }) => {
+const MessageList = ({ thoughts, setThoughts, likedThoughts, setLikedThoughts }) => {
   /*
   map thoughts
   State to track which posts are liked (array of the ids).
@@ -20,6 +20,8 @@ const MessageList = ({ thoughts, setThoughts }) => {
           thought={item}
           index={index}
           setThoughts={setThoughts}
+          liked={likedThoughts.includes(item._id)}
+          setLikedThoughts={setLikedThoughts}
         >
           {item.message}
         </Message>
