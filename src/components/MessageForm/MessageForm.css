@@ -11,7 +11,7 @@
   margin: 1rem;
   border: 1px solid black;
   background-color: rgb(230, 226, 226);
-  width: 90vw;
+  width: 40vw;
   min-width: 200px;
   padding: 0.5rem 2rem;
   gap: 1rem;
@@ -31,6 +31,9 @@
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
+  font-size: 18px;
+  max-width: 250px;
 }
 
 .buttonHeart {
