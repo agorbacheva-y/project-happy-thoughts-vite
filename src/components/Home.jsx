@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import Header from "./Header";
-import MessageForm from "./MessageForm/MessageForm";
-import MessageList from "./MessageList";
-import Loading from "./Loading";
+import { useEffect, useState } from "react"
+import Header from "./Header"
+import MessageForm from "./MessageForm/MessageForm"
+import MessageList from "./MessageList"
+import HeartStats from "./HeartStats"
+import Loading from "./Loading"
 
 const Home = () => {
   // state to save thoughts fetched from api
@@ -63,6 +64,7 @@ const Home = () => {
       ) : (
         <>
           <MessageForm addNewThought={addNewThought} />
+          <HeartStats thoughts={thoughts} likedThoughts={likedThoughts} />
           <MessageList
             thoughts={thoughts}
             setThoughts={setThoughts}
