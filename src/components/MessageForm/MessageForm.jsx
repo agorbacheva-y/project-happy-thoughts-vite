@@ -26,7 +26,8 @@ const MessageForm = ({ addNewThought }) => {
         setErrorType(data.errors.message.kind);
         console.log(data.message);
       } else if (res.ok) {
-        addNewThought(newThought);
+        // The data returned from a successful submit is a valid thought object. So we pass that do our array of message objects
+        addNewThought(data);
         setNewThought(emptyThought);
       }
       setLetterCount(0);
