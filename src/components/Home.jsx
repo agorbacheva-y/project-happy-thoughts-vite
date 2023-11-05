@@ -11,15 +11,15 @@ const Home = () => {
   // state for handling liked thoughts
   const [likedThoughts, setLikedThoughts] = useState(() => {
     // we try to load the liked thoughts from localStorage
-    const savedLikedThoughts = localStorage.getItem('likedThoughts')
+    const savedLikedThoughts = localStorage.getItem("likedThoughts");
     // If we got any saved thoughts we parse the string, if not we set the state to a empty array
-    return savedLikedThoughts ? JSON.parse(savedLikedThoughts) : []
-  })
+    return savedLikedThoughts ? JSON.parse(savedLikedThoughts) : [];
+  });
 
   //Whenever the state likedThoughts is modified we write it to our local storage
   useEffect(() => {
-    localStorage.setItem('likedThoughts', JSON.stringify(likedThoughts))
-  }, [likedThoughts])
+    localStorage.setItem("likedThoughts", JSON.stringify(likedThoughts));
+  }, [likedThoughts]);
 
   // state for loading
   const [loading, setLoading] = useState(true);
@@ -63,7 +63,12 @@ const Home = () => {
       ) : (
         <>
           <MessageForm addNewThought={addNewThought} />
-          <MessageList thoughts={thoughts} setThoughts={setThoughts} likedThoughts={likedThoughts} setLikedThoughts={setLikedThoughts} />
+          <MessageList
+            thoughts={thoughts}
+            setThoughts={setThoughts}
+            likedThoughts={likedThoughts}
+            setLikedThoughts={setLikedThoughts}
+          />
         </>
       )}
     </>

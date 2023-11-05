@@ -2,7 +2,14 @@ import Timestamp from "./Timestamp";
 import HeartButton from "./HeartButton";
 import "./Message.css";
 
-const Message = ({ children, thought, index, setThoughts, liked, setLikedThoughts }) => {
+const Message = ({
+  children,
+  thought,
+  index,
+  setThoughts,
+  liked,
+  setLikedThoughts,
+}) => {
   return (
     <div className="messageBox">
       <div className="messageInfo">{children}</div>

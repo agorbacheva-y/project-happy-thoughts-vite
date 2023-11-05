@@ -1,7 +1,12 @@
 import Message from "./Message/Message";
 import "./Message/Message.css";
 
-const MessageList = ({ thoughts, setThoughts }) => {
+const MessageList = ({
+  thoughts,
+  setThoughts,
+  likedThoughts,
+  setLikedThoughts,
+}) => {
   return (
     <div className="messageBoxContainer">
       {thoughts.map((item, index) => (

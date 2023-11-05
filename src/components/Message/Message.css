@@ -16,6 +16,10 @@
 	animation: 1.5s ease-out 0s 1 slideDown;
 }
 
+.messageInfo {
+  overflow-wrap: break-word;
+}
+
 @keyframes slideDown {
 	0% {
 			transform: translateY(-100%);

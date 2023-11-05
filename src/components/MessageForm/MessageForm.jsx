@@ -13,23 +13,26 @@ const MessageForm = ({ addNewThought }) => {
 
   const postThought = async () => {
     try {
-      const res = await fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: newThought.message }),
-      })
+      const res = await fetch(
+        "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: newThought.message }),
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
-        setErrorType(data.errors.message.kind)
+        setErrorType(data.errors.message.kind);
         console.log(data.message);
       } else if (res.ok) {
         addNewThought(newThought);
         setNewThought(emptyThought);
       }
       setLetterCount(0);
-    } catch(error) {
-        console.log(error.message);
-    };
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -47,37 +50,25 @@ const MessageForm = ({ addNewThought }) => {
   };
 
   // function to show error message depending on character count
-  // const errorHandling = () => {
-  //   if (letterCount === 0) {
-  //     setErrorMessage("Please enter your happy thought!");
-  //   } else if (letterCount < 5) {
-  //     setErrorMessage("You need at least 5 characters");
-  //   } else if (letterCount > 140) {
-  //     setErrorMessage("Message is too long");
-  //   } else {
-  //     setErrorMessage("");
-  //   }
-  //   return errorMessage;
-  // };
-    const errorHandling = () => {
-      switch (errorType) {
-        case "minlength":
-          setErrorMessage("You need at least 5 characters");
-          break;
-        case "maxlength":
-          setErrorMessage("Message is too long");
-          break;
-        case "required":
-          setErrorMessage("Please enter your happy thought!");
-          break;
-        default:
-          return;
-      }
+  const errorHandling = () => {
+    switch (errorType) {
+      case "minlength":
+        setErrorMessage("You need at least 5 characters");
+        break;
+      case "maxlength":
+        setErrorMessage("Message is too long");
+        break;
+      case "required":
+        setErrorMessage("Please enter your happy thought!");
+        break;
+      default:
+        return;
     }
+  };
 
-    useEffect(() => {
-      errorHandling();
-    },[errorType]);
+  useEffect(() => {
+    errorHandling();
+  }, [errorType]);
 
   return (
     <div className="formContainer">
@@ -91,7 +82,7 @@ const MessageForm = ({ addNewThought }) => {
           onChange={saveMessage}
         ></textarea>
         <CharacterCount letterCount={letterCount} errorMessage={errorMessage} />
-        <button onClick={handleSubmit} >
+        <button onClick={handleSubmit}>
           <span>❤️</span>
           <span>Send Happy Thought</span>
           <span>❤️</span>
