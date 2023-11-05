@@ -12,6 +12,7 @@
   min-width: 200px;
   padding: 1.5rem 1rem;
   box-shadow: 7px 7px black;
+  margin-bottom: 10px;
 	animation: 1.5s ease-out 0s 1 slideDown;
 }
 
