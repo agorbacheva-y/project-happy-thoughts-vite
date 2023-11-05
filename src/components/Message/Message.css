@@ -76,3 +76,6 @@
 .heartBtn > div > button:hover {
 	background-color: #ffccff;
 }
+.heartBtn > div > button:disabled {
+	background-color: #ffccff;
+}
