@@ -1,0 +1,19 @@
+.heartStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem;
+  border: 1px solid black;
+  background-color: rgb(230, 226, 226);
+  width: 60vw;
+  min-width: 200px;
+  padding: 0.5rem 2rem;
+  gap: 1rem;
+  box-shadow: 7px 7px black;
+}
+
+.heartStatsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

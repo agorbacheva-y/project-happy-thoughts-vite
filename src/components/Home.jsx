@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import Header from "./Header";
-import MessageForm from "./MessageForm/MessageForm";
-import MessageList from "./MessageList";
+import { useEffect, useState } from "react"
+import Header from "./Header"
+import MessageForm from "./MessageForm/MessageForm"
+import MessageList from "./MessageList"
+import HeartStats from "./HeartStats"
 
 /*
   state: thoughts
@@ -62,13 +63,14 @@ const Home = () => {
   const addNewThought = (newThought) => {
     setThoughts((previousThoughts) => [newThought, ...previousThoughts]);
   };
-
+  const test = 'What'
   return (
-    <>
+    <div className="mainWrapper">
       <Header />
+      <HeartStats thoughts={thoughts} likedThoughts={likedThoughts} />
       <MessageForm addNewThought={addNewThought} />
       <MessageList thoughts={thoughts} setThoughts={setThoughts} likedThoughts={likedThoughts} setLikedThoughts={setLikedThoughts} />
-    </>
+    </div>
   );
 };
 
