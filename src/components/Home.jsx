@@ -8,10 +8,22 @@ const Home = () => {
   // state to save thoughts fetched from api
   const [thoughts, setThoughts] = useState([]);
 
+  // state for handling liked thoughts
+  const [likedThoughts, setLikedThoughts] = useState(() => {
+    // we try to load the liked thoughts from localStorage
+    const savedLikedThoughts = localStorage.getItem('likedThoughts')
+    // If we got any saved thoughts we parse the string, if not we set the state to a empty array
+    return savedLikedThoughts ? JSON.parse(savedLikedThoughts) : []
+  })
+
+  //Whenever the state likedThoughts is modified we write it to our local storage
+  useEffect(() => {
+    localStorage.setItem('likedThoughts', JSON.stringify(likedThoughts))
+  }, [likedThoughts])
+
   // state for loading
   const [loading, setLoading] = useState(true);
 
-  // API url for GET
   const fetchUrl = "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts";
 
   // function to fetch thoughts from api
@@ -51,7 +63,7 @@ const Home = () => {
       ) : (
         <>
           <MessageForm addNewThought={addNewThought} />
-          <MessageList thoughts={thoughts} setThoughts={setThoughts} />
+          <MessageList thoughts={thoughts} setThoughts={setThoughts} likedThoughts={likedThoughts} setLikedThoughts={setLikedThoughts} />
         </>
       )}
     </>

@@ -10,6 +10,8 @@ const MessageList = ({ thoughts, setThoughts }) => {
           thought={item}
           index={index}
           setThoughts={setThoughts}
+          liked={likedThoughts.includes(item._id)}
+          setLikedThoughts={setLikedThoughts}
         >
           {item.message}
         </Message>
